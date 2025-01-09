@@ -94,7 +94,7 @@ macro_rules! include_package {
                 minor: $minor,
                 patch: $patch,
             },
-            bytes: include_bytes!(concat!(
+            archive: include_bytes!(concat!(
                 $root,
                 "/",
                 $namespace,
