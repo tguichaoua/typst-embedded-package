@@ -1,0 +1,30 @@
+[package]
+name = "typst-embedded-package"
+version = "0.1.0"
+edition = "2021"
+authors = ["Tristan Guichaoua <tguichaoua.dev@gmail.com>"]
+
+description = "Support to embed typst package to the binary"
+repository = "https://github.com/tguichaoua/typst-embedded-package"
+license = "MIT OR Apache-2.0"
+keywords = ["typst", "embedded", "package"]
+
+exclude = [".github/"]
+
+
+[features]
+read-archive = ["dep:flate2", "dep:tar"]
+
+
+[dependencies]
+flate2 = { version = "1", default-features = false, optional = true }
+tar = { version = "0.4", default-features = false, optional = true }
+typst = { version = "0.12.0", default-features = false }
+
+
+[package.metadata.docs.rs]
+# To build locally:
+# RUSTDOCFLAGS="--cfg docsrs" cargo +nightly doc --all-features --no-deps --open
+all-features = true
+# enable unstable features in the documentation
+rustdoc-args = ["--cfg", "docsrs"]
