@@ -1716,7 +1716,7 @@ checksum = "1051c56bbbf74d31ea6c6b1661e62fa0ebb8104403ee53f6dcd321600426e0b6"
 
 [[package]]
 name = "typst-embedded-package"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "flate2",
  "tar",
