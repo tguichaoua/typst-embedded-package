@@ -40,7 +40,7 @@ pub fn inspect_archive(
             let mut content = Vec::new();
             entry.read_to_end(&mut content)?;
 
-            File::File(file_id, Bytes::from(content))
+            File::File(file_id, Bytes::new(content))
         };
 
         inspect(file)
