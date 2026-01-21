@@ -1,6 +1,6 @@
 [package]
 name = "typst-embedded-package"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2021"
 authors = ["Tristan Guichaoua <tguichaoua.dev@gmail.com>"]
 
@@ -19,7 +19,7 @@ read-archive = ["dep:flate2", "dep:tar"]
 [dependencies]
 flate2 = { version = "1", default-features = false, optional = true }
 tar = { version = "0.4", default-features = false, optional = true }
-typst = { version = "0.13.0", default-features = false }
+typst = { version = "0.14.0", default-features = false }
 
 
 [package.metadata.docs.rs]
