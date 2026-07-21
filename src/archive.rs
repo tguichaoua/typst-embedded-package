@@ -3,7 +3,7 @@ use std::io::Read as _;
 
 use typst::foundations::Bytes;
 use typst::syntax::package::PackageSpec;
-use typst::syntax::{FileId, Source, VirtualPath};
+use typst::syntax::{FileId, RootedPath, Source, VirtualPath, VirtualRoot};
 
 /// A file from a package's archive.
 pub enum File {
@@ -29,7 +29,21 @@ pub fn inspect_archive(
 
         let is_source_file = path.extension().is_some_and(|ext| ext == "typ");
 
-        let file_id = FileId::new(Some(spec.clone()), VirtualPath::new(path));
+        let vpath = path
+            .to_str()
+            .ok_or_else(|| {
+                io::Error::new(
+                    io::ErrorKind::InvalidData,
+                    "archive contains a file path that is not valid UTF-8",
+                )
+            })
+            .and_then(|path| {
+                VirtualPath::new(path)
+                    .map_err(|err| io::Error::new(io::ErrorKind::InvalidData, err))
+            })?;
+
+        let root = VirtualRoot::Package(spec.clone());
+        let file_id = FileId::new(RootedPath::new(root, vpath));
 
         let file = if is_source_file {
             let mut content = String::new();
