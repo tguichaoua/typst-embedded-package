@@ -95,18 +95,18 @@ macro_rules! include_package {
                 minor: $minor,
                 patch: $patch,
             },
-            archive: include_bytes!(concat!(
+            archive: ::core::include_bytes!(::core::concat!(
                 $root,
                 "/",
                 $namespace,
                 "/",
                 $name,
                 "-",
-                stringify!($major),
+                ::core::stringify!($major),
                 ".",
-                stringify!($minor),
+                ::core::stringify!($minor),
                 ".",
-                stringify!($patch),
+                ::core::stringify!($patch),
                 ".tar.gz"
             )),
         }
